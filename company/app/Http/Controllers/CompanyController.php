@@ -7,6 +7,7 @@ use App\Company;
 use DB;
 use File;
 use View;
+use Storage;
 
 class CompanyController extends Controller
 {
@@ -52,27 +53,32 @@ class CompanyController extends Controller
         $company->website = $req->input('website');
         // if( $request->input('company_id') != "") {
         //     $company = DB::table('companies')->where('id', '=', 10)->get();
-        $logo = 'storage/app/public' . $req->input('name');
-        $company->logo = $logo;
+        $company->logo = 'storage/app/public/' . $req->input('email');
 
         $image =$req->file('image');
         if($image != null){
-            $image_path = '../' . $oldcompany->id; 
+            $image_path = '../' . $oldcompany->logo; 
             if(File::exists($image_path)) {
                 File::delete($image_path);
             }
 
-            $input['imagename'] = $req->new_name . '.' . $image->getClientOriginalExtension();
+            $input['imagename'] = $req->name . '.' . $image->getClientOriginalExtension();
+            
             $destinationPath = public_path('../storage/app/public');
             $image->move($destinationPath,$input['imagename']);
+
+            $company->logo = $company->logo .'.'. $image->getClientOriginalExtension();
         } else {
             if($company->name != $oldcompany->name){
-                Storage::move('../'.$oldcompany->logo, '../'.$company->logo);
+                //$valore = split ("\.",$oldcompany->logo);
+                $valore = explode('.',$oldcompany->logo);
+                rename('../'.$oldcompany->logo, '../'.$company->logo.'.'.$valore[2]);
+                $company->logo = $company->logo .'.'.$valore[2];
             }
         }
         
         DB::table('companies')
-                ->where('id', $company->id)
+                ->where('id', $id)
                 ->update(['name' => $company->name, 'email' => $company->email,'website' => $company->website, 'logo' => $company->logo]);
         
         return redirect('/companylist');
@@ -120,9 +126,4 @@ class CompanyController extends Controller
         return redirect('/companylist');
     }
 
-    public function edit2($id){
-        $company = Company::find($id);
-        return View::make('editCompany')->with('company',$company);
-        
-    }
 }

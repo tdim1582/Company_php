@@ -6,8 +6,8 @@
 
 
 <form action="/companylist/update/<?php echo $company->id; ?>" method="POST" enctype="multipart/form-data">
-    <?php csrf_field() ?>
-    <?php method_field('POST') ?>
+    {{csrf_field()}}
+    {{method_field('POST')}}
     <div class="container">
         <div class="jumbotron">
         <div class="row">
@@ -30,7 +30,7 @@
                     <label> Image </label>
                     <div class="input-group">
                         <div class="custon-file">
-                            <input type="hidden" class="btn btn-primary" name="id" id="id" />
+                            <input type="hidden" class="btn btn-primary" name="id" id="id" value="{!! csrf_token() !!}"/>
                             <input type="file" name="image" class="custon-file-input" />
                         </div>
                     </div>
