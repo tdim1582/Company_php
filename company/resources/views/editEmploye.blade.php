@@ -2,11 +2,11 @@
 
 
 @section('content')
-    {!! Form::model($employe,array('route'=>array('edit',$employe->id))) !!}
+    {!! Form::model($employe,array('route'=>array('editEmploye',$employe->id))) !!}
         <div class="container">
             <div class="row">
                 <div class="col-md-6 col-lg 6">
-                    <h2 align="right"> New  </h2>
+                    <h2 align="right"> Edit  </h2>
                     <div class="form-group"> 
                         {{Form::label('first_name','First Name')}}
                         {{Form::text('first_name',$employe->first_name,['class' => 'form-control'])}}
@@ -22,7 +22,7 @@
                 </div>
 
                 <div class="col-md-6 col-lg 6">
-                    <h2> employe</h2>
+                    <h2> employee</h2>
                     <div class="form-group"> 
                         {{Form::label('last_name','Last Name')}}
                         {{Form::text('last_name',$employe->last_name,['class' => 'form-control'])}}

@@ -2,7 +2,7 @@
 
 
 @section('content')
-    {!! Form::model($employe,array('route'=>array('delete',$employe->id))) !!}
+    {!! Form::model($employe,array('route'=>array('deleteEmploye',$employe->id))) !!}
         <div class="container" align="center">
             <h2 class="jumbotron-heading" > Delete!</h2>
             <p class="lead text-muted">

@@ -19,9 +19,10 @@ class EmployeController extends Controller
         $employe->last_name = $req->input('new_last_name');
         $employe->email = $req->input('new_email');
         $employe->phonenumber = $req->input('new_phonenumber');
-        // if( $request->input('new_company_id') != "") {
-        //     $company = DB::table('companies')->where('id', '=', 10)->get();
         $employe->company_id = $req->input('new_company_id');
+         if( $employe->company_id == null) {
+            $employe->company_id = 0;
+        }
         
         $employe->save();
         return redirect('/employelist');
@@ -44,6 +45,11 @@ class EmployeController extends Controller
         $employe->email = $req->input('email');
         $employe->phonenumber = $req->input('phonenumber');
         $employe->company_id = $req->input('company_id');
+
+        if( $employe->company_id == null) {
+                $employe->company_id = 0;
+        }
+        
 
         
         DB::table('employes')
