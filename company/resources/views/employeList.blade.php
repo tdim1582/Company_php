@@ -168,8 +168,8 @@ $(document).ready(function(){
                         <td>{{$employe->phonenumber}}</td>
                         <td>{{$employe->company_id}}</td>
                         <td>
-                            <a href="employelist/edit/<?php echo $employe->id; ?>" class="edit" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
-                            <a href="employelist/delete/<?php echo $employe->id; ?>"  class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE872;</i></a>
+                            <a href="/employelist/edit/<?php echo $employe->id; ?>" class="edit" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
+                            <a href="/employelist/delete/<?php echo $employe->id; ?>"  class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE872;</i></a>
                         </td>
                     </tr>
                 @endforeach           

@@ -64,11 +64,13 @@ Route::get('/companylist/delete/{id}', array('as'=>'deleteCompany',function($id)
 
 Route::get('/companylist/delete/id/{id}','CompanyController@delete');
 
-Route::get('/companylist/edit/{id}', array('as'=>'editCompany',function($id){
-    return View::make('editCompany')->with('company',App\Company::find($id));
-}));
+// Route::get('/companylist/edit/{id}', array('as'=>'editCompany',function($id){
+//     return View::make('editCompany')->with('company',App\Company::find($id));
+// }));
 
-Route::post('/companylist/edit/{id}', 'CompanyController@edit');
+Route::get('/companylist/edit/{id}', 'CompanyController@edit2');
+
+Route::post('/companylist/update/{id}', 'CompanyController@edit');
 
 
 

@@ -168,8 +168,8 @@ $(document).ready(function(){
                         <td>{{$company->website}}</td>
                         <td>{{$company->logo}}</td>
                         <td>
-                            <a href="companylist/edit/<?php echo $company->id; ?>" method="get" class="edit" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
-                            <a href="companylist/delete/<?php echo $company->id; ?>"  class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE872;</i></a>
+                            <a href="/companylist/edit/<?php echo $company->id; ?>" method="get" class="edit" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
+                            <a href="/companylist/delete/<?php echo $company->id; ?>"  class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE872;</i></a>
                         </td>
                     </tr>
                 @endforeach           

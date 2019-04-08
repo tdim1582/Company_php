@@ -2,42 +2,48 @@
 
 
 @section('content')
- {!!  Form::model($company,array('route'=>array('editCompany',$company->id))) !!}
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.mini.css">
 
-    <!-- <form method="post" id="formImgInp" url="{{route('/companylist/edit/'.$company->id)}}" enctype="multipart/form-data"> -->
-        <div class="container">
-            <div class="row">
-                <div class="col-md-6 col-lg 6">
-                    <h2 align="right"> Edit  </h2>
-                    <div class="form-group"> 
-                        {{Form::label('new_name','First Name')}}
-                        {{Form::text('new_name',$company->name,['class' => 'form-control'])}}
-                        <!-- <input type="text" class="form-control" placeholder="Enter name" name="new_name" id="new_name" /> -->
-                    </div>
-                    <div class="form-group">  
-                        <input type="hidden" name="_token" class="btn btn-primary"  value="Open"/>
-                        <input type="file"   name="logo_name" id="logo_name" placeholder="Don\'t choose fiel'"/>
-                    </div>
-                    <div class="form-group">
-                        {{Form::submit('Add new company',['class' => 'btn btn-primary'])}}
-                   
+
+<form action="/companylist/update/<?php echo $company->id; ?>" method="POST" enctype="multipart/form-data">
+    <?php csrf_field() ?>
+    <?php method_field('POST') ?>
+    <div class="container">
+        <div class="jumbotron">
+        <div class="row">
+            <div class="col-md-6 col-lg 6">
+                <div class="form-group">
+                    <label> Name </label>
+                    <input type="text" name="name" value=<?php echo $company->name; ?> class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label> Email </label>
+                    <input type="text" name="email" value=<?php echo $company->email; ?> class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label> Website </label>
+                    <input type="text" name="website" value=<?php echo $company->website; ?> class="form-control" />
+                </div>
+            </div>
+            <div class="col-md-6 col-lg 6">
+                <div class="form-group">
+                    <label> Image </label>
+                    <div class="input-group">
+                        <div class="custon-file">
+                            <input type="hidden" class="btn btn-primary" name="id" id="id" />
+                            <input type="file" name="image" class="custon-file-input" />
+                        </div>
                     </div>
                 </div>
-
-
-                <div class="col-md-6 col-lg 6">
-                    <h2> company</h2>
-                    <div class="form-group"> 
-                        {{Form::label('new_email','E-mail address')}}
-                        {{Form::text('new_email',$company->email,['class' => 'form-control'])}}
-                    </div>
-                    <div class="form-group">
-                        {{Form::label('new_website','Website')}}
-                        {{Form::text('new_website',$company->website,['class' => 'form-control'])}}
-                    </div>
+                <div class="form-group">
+                    <button type="submit" name="submit" clss="btn btn-primary">Update company</button>
                 </div>
             </div>
         </div>
-    </form>
-<!-- {!! Form::close() !!} -->
+        </div>
+    </div>
+</form>
+
+
+
 @endsection
