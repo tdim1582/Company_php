@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Employe;
+use App\Company;
 use DB;
 
 class EmployeController extends Controller
@@ -32,7 +33,8 @@ class EmployeController extends Controller
     
     public function viewEmploye(){
         $employelist = Employe::paginate(10);
-        return view('employelist',compact('employelist'));
+        $companylist = Company::all();
+        return view('employelist',compact('employelist','companylist'));
     }
 
     public function edit(Request $req,$id){

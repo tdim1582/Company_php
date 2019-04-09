@@ -69,7 +69,7 @@ class CompanyController extends Controller
 
             $company->logo = $company->logo .'.'. $image->getClientOriginalExtension();
         } else {
-            if($company->name != $oldcompany->name){
+            if($company->email != $oldcompany->email){
                 //$valore = split ("\.",$oldcompany->logo);
                 $valore = explode('.',$oldcompany->logo);
                 rename('../'.$oldcompany->logo, '../'.$company->logo.'.'.$valore[2]);

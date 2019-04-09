@@ -132,6 +132,7 @@ $(document).ready(function(){
 });
 </script>
 <div class="container">
+        <a class="btn btn-secondary" href="/login/successlogin" >Back to basic page </a>
         <div class="table-wrapper">			
             <div class="table-title">
                 <div class="row">
@@ -166,7 +167,15 @@ $(document).ready(function(){
                         <td>{{$employe->first_name}} {{$employe->last_name}}</td>
                         <td>{{$employe->email}}</td>
                         <td>{{$employe->phonenumber}}</td>
-                        <td>{{$employe->company_id}}</td>
+                        <td><?php if($employe->company_id ==0) {
+                                echo "This employee has not company";
+                                } else{
+                                    foreach($companylist as $company){
+                                        if($company->id == $employe->company_id){
+                                            echo $company->name;
+                                        }
+                                    }
+                                }?></td>
                         <td>
                             <a href="/employelist/edit/<?php echo $employe->id; ?>" class="edit" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
                             <a href="/employelist/delete/<?php echo $employe->id; ?>"  class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE872;</i></a>
@@ -181,9 +190,11 @@ $(document).ready(function(){
 
     {!! Form::open(['url' => 'employelist/addnew', 'method' => 'post']) !!}
         <div class="container">
+            <div style="width: 100%; text-align: center;">
+                    <h2> New employee</h2>
+            </div>
             <div class="row">
                 <div class="col-md-6 col-lg 6">
-                    <h2 align="right"> New  </h2>
                     <div class="form-group"> 
                         {{Form::label('new_first_name','First Name')}}
                         {{Form::text('new_first_name','',['class' => 'form-control','placeholder' => 'Enter first name'])}}
@@ -199,7 +210,6 @@ $(document).ready(function(){
                 </div>
 
                 <div class="col-md-6 col-lg 6">
-                    <h2> employe</h2>
                     <div class="form-group"> 
                         {{Form::label('new_last_name','Last Name')}}
                         {{Form::text('new_last_name','',['class' => 'form-control','placeholder' => 'Enter last name'])}}
@@ -208,14 +218,11 @@ $(document).ready(function(){
                         {{Form::label('new_phonenumber','Phone Number')}}
                         {{Form::text('new_phonenumber','',['class' => 'form-control','placeholder' => 'Enter phone number'])}}
                     </div>
-                    <div>
-                        {{Form::label('save','Save the employe')}}
-                    </div>
-                    <div>
-                        
-                        {{Form::submit('Add new employe',['class' => 'btn btn-primary'])}}
-                    </div>
+                    
                 </div>
+            </div>
+            <div style="width: 100%; text-align: center;">
+                {{Form::submit('Add new employe',['class' => 'btn btn-primary'])}}
             </div>
         </div>
     {!! Form::close() !!}
