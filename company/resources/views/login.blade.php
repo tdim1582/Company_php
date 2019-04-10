@@ -12,56 +12,31 @@
             <script>windows.location="/login/successlogin";</script>
         @endif
 
-    <div id="login">
-        <h3 class="text-center text-white pt-5">Login form</h3>
-        <div class="container">
-            <div id="login-row" class="row justify-content-center align-items-center">
-                <div id="login-column" class="col-md-6">
-                    <div id="login-box" class="col-md-12">
-                        <form id="login-form" class="form" action="" method="post">
-                            <h3 class="text-center text-info">Login</h3>
-                            <div class="form-group">
-                                <label for="email" class="text-info">E-mail address:</label><br>
-                                <input type="email" name="email" id="username" class="form-control" placeholder="Enter email">
-                            </div>
-                            <div class="form-group">
-                                <label for="password" class="text-info">Password:</label><br>
-                                <input type="password" name="password" id="password" class="form-control" placeholder="Enter password">
-                            </div>
-                            <div class="form-group">
-                                <label for="remember-me" class="text-info"><span>Remember me</span> <span><input id="remember-me" name="remember-me" type="checkbox"></span></label><br>
-                                <input type="submit" name="submit" class="btn btn-info btn-md" value="Login">
-                            </div>
-                        </form>
+        <div id="login">
+            <h3 class="text-center text-white pt-5">Login form</h3>
+            <div class="container">
+                <div id="login-row" class="row justify-content-center align-items-center">
+                    <div id="login-column" class="col-md-6">
+                        <div id="login-box" class="col-md-12">
+                            <form id="login-form" class="form" action="" method="post">
+                                <h3 class="text-center text-info">Login</h3>
+                                <div class="form-group">
+                                    <label for="email" class="text-info">E-mail address:</label><br>
+                                    <input type="email" name="email" id="username" class="form-control" placeholder="Enter email">
+                                </div>
+                                <div class="form-group">
+                                    <label for="password" class="text-info">Password:</label><br>
+                                    <input type="password" name="password" id="password" class="form-control" placeholder="Enter password">
+                                </div>
+                                <div class="form-group">
+                                    <label for="remember-me" class="text-info"><span>Remember me</span> <span><input id="remember-me" name="remember-me" type="checkbox"></span></label><br>
+                                    <input type="submit" name="submit" class="btn btn-info btn-md" value="Login">
+                                </div>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-
-
-
-
-
-
-
-        <!-- <div class="container">
-            <div class="row">
-                <div class="col-md-8 col-lg 8">
-                    <h1 class="login_h"> Login </h1>
-                    <div class="form-group"> 
-                        {{Form::label('email','E-mail address')}}
-                        {{Form::text('email','',['class' => 'form-control','placeholder' => 'Enter email'])}}
-                    </div>
-                    <div class="form-group">
-                        {{Form::label('password','Password')}}
-                        {{Form::text('password','',['class' => 'form-control','placeholder' => 'Enter password'])}}
-                    </div>
-                    <div>
-                        {{Form::submit('Login',['class' => 'btn btn-primary'])}}
-                    </div>
-                </div>
-            </div>
-        </div> -->
     {!! Form::close() !!}
 @endsection

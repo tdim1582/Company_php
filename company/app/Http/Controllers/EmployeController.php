@@ -40,7 +40,6 @@ class EmployeController extends Controller
     public function edit(Request $req,$id){
 
         $employe = new Employe;
-        echo $id;
         $employe->id = $id;
         $employe->first_name = $req->input('first_name');
         $employe->last_name = $req->input('last_name');

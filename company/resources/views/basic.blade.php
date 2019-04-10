@@ -5,8 +5,7 @@
     @if(isset(Auth::user()->email))
                         
         <nav class="navbar navbar-toggleable-md navbar-inverse fixed-top bg-inverse">
-        <!-- <nav class="nav nav-masthead"> -->
-            <a class="navbar-brand" href="home">Home</a>
+            <a class="navbar-brand" href="{{url('')}}">Home</a>
             <a class="navbar-brand" href="{{url('/employelist')}}">Emploies</a>
             <a class="navbar-brand" href="{{url('/companylist')}}">Comanies</a>
             <a class="navbar-brand" href="{{url('/logout')}}" method="get">Logout</a>

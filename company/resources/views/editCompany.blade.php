@@ -10,8 +10,11 @@
     {{method_field('POST')}}
     <div class="container">
         <div class="jumbotron">
+        <div style="width: 100%; text-align: center;">
+            <h2>Edit company</h2>
+        </div>
         <div class="row">
-            <div class="col-md-6 col-lg 6">
+            <div class="col-md-10 col-lg 6">
                 <div class="form-group">
                     <label> Name </label>
                     <input type="text" name="name" value=<?php echo $company->name; ?> class="form-control" />
@@ -24,8 +27,6 @@
                     <label> Website </label>
                     <input type="text" name="website" value=<?php echo $company->website; ?> class="form-control" />
                 </div>
-            </div>
-            <div class="col-md-6 col-lg 6">
                 <div class="form-group">
                     <label> Image </label>
                     <div class="input-group">

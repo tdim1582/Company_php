@@ -167,7 +167,7 @@ $(document).ready(function(){
                         <td>{{$company->name}} </td>
                         <td>{{$company->email}}</td>
                         <td>{{$company->website}}</td>
-                        <td><img src="../<?php echo $company->logo?>" width="100" height="80"/></td>
+                        <td><img src='<?php $valore = explode('public',$company->logo); echo '/storage'.$valore[1]?>' width="100" height="80"/></td>
                         <td>
                             <a href="/companylist/edit/<?php echo $company->id; ?>" method="get" class="edit" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
                             <a href="/companylist/delete/<?php echo $company->id; ?>"  class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE872;</i></a>

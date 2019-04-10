@@ -1,15 +1,5 @@
 <?php
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
 
 Route::get('/', 'PageController@getHome');
 
@@ -56,8 +46,6 @@ Route::post('/employelist/edit/{id}', 'EmployeController@edit');
 
 Route::get('/companylist', 'CompanyController@viewCompany');
 
-//Route::post('/companylist/addnew', 'CompanyController@newCompany');
-
 Route::get('/companylist/delete/{id}', array('as'=>'deleteCompany',function($id){
     return View::make('deleteCompany')->with('company',App\Company::find($id));
 }));
@@ -68,13 +56,7 @@ Route::get('/companylist/edit/{id}', array('as'=>'editCompany',function($id){
     return View::make('editCompany')->with('company',App\Company::find($id));
 }));
 
-
 Route::post('/companylist/update/{id}', 'CompanyController@edit');
 
-
-
 Route::post('/companylist/upload','CompanyController@uploadImage');
-// Route::post('/companylist/upload', [
-//     'as' => 'image.add',
-//     'uses' => 'CompanyController@uploadImage'
-// ]);
+
