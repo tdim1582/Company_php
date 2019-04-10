@@ -73,7 +73,8 @@ Route::post('/companylist/update/{id}', 'CompanyController@edit');
 
 
 
-Route::post('/companylist/upload', [
-    'as' => 'image.add',
-    'uses' => 'CompanyController@uploadImage'
-]);
+Route::post('/companylist/upload','CompanyController@uploadImage');
+// Route::post('/companylist/upload', [
+//     'as' => 'image.add',
+//     'uses' => 'CompanyController@uploadImage'
+// ]);

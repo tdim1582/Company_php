@@ -201,7 +201,7 @@ $(document).ready(function(){
                     </div>
                     <div class="form-group"> 
                         {{Form::label('new_email','E-mail address')}}
-                        {{Form::text('new_email','',['class' => 'form-control','placeholder' => 'Enter email'])}}
+                        {{Form::text('new_email','',['class' => 'form-control','placeholder' => 'Enter email', 'type'=>'email'])}}
                     </div>
                     <div class="form-group"> 
                         {{Form::label('new_company_id','Company ID')}}

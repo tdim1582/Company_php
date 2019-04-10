@@ -167,9 +167,7 @@ $(document).ready(function(){
                         <td>{{$company->name}} </td>
                         <td>{{$company->email}}</td>
                         <td>{{$company->website}}</td>
-                        <!-- <td><img src="../<?php //echo $company->logo;?>"/></td> -->
-                        <!-- <td><img src="http://localhost:8000/public/image/alma.png" width="100" height="80"></td> -->
-                        <td><img src="alma.png"></td>
+                        <td><img src="../<?php echo $company->logo?>" width="100" height="80"/></td>
                         <td>
                             <a href="/companylist/edit/<?php echo $company->id; ?>" method="get" class="edit" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
                             <a href="/companylist/delete/<?php echo $company->id; ?>"  class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE872;</i></a>
@@ -182,8 +180,9 @@ $(document).ready(function(){
     </div>     
     <center>{!! $companylist->render() !!}</center>
 
-    <!-- {!! Form::open(['url' => 'image.add', 'method' => 'post']) !!} -->
-    <form method="post" id="formImgInp" action="{{route('image.add')}}" enctype="multipart/form-data">
+    <form method="post"  action="/companylist/upload" enctype="multipart/form-data">
+        {{csrf_field()}}
+        {{method_field('POST')}}
         <div class="container">
             <div style="width: 100%; text-align: center;">
                 <h2> New company</h2>
@@ -192,24 +191,14 @@ $(document).ready(function(){
                 <div class="row">
                     <div class="col-md-6 col-lg 6">
                         <div class="form-group"> 
-                            {{Form::label('new_name','First Name')}}
-                            <!-- {{Form::text('new_name','',['class' => 'form-control','placeholder' => 'Enter name'])}} -->
+                            {{Form::label('new_name','Name')}}
                             <input type="text" class="form-control" placeholder="Enter name" name="new_name" id="new_name" />
                         </div>
-                        <div class="form-group"> 
-                        <!--     {{Form::label('new_logo','Logo')}}
-                            {{Form::text('logo_name','don\'t upload jet',['class' => 'form-control', 'id' => 'logo_name'])}}
-                        </div> 
-                        <div class="form-group"> 
-                            {{Form::submit('Uplod logo',['class' => 'btn btn-primary'])}} 
-                        -->   
+                        <div class="form-group">   
                             {{Form::label('upload','Upload file')}}
-                            <input type="hidden" name="_token" class="btn btn-primary"  value="Open"/>
-                            <input type="file"   name="logo_name" id="logo_name" placeholder="Don\'t choose fiel'"/>
+                            <input type="hidden" name="id" id="id" class="btn btn-primary"  value="{!! csrf_token() !!}"/>
+                            <input type="file"   name="logo_name" id="logo_name" placeholder="Don\'t choose fiel"/>
                         </div>
-                        <!-- <div class="form-group">
-                            {{Form::submit('Add new company',['class' => 'btn btn-primary'])}}
-                        </div> -->
                     </div>
 
                     <div class="col-md-6 col-lg 6">
@@ -221,9 +210,6 @@ $(document).ready(function(){
                             {{Form::label('new_website','Website')}}
                             {{Form::text('new_website','',['class' => 'form-control','placeholder' => 'Enter website'])}}
                         </div>
-                        <!-- {!! Form::close() !!} -->
-    
-                    
                     </div>
                 </div>
                 <div style="width: 100%; text-align: center;">

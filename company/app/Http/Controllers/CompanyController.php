@@ -51,18 +51,17 @@ class CompanyController extends Controller
         $company->name = $req->input('name');
         $company->email = $req->input('email');
         $company->website = $req->input('website');
-        // if( $request->input('company_id') != "") {
-        //     $company = DB::table('companies')->where('id', '=', 10)->get();
         $company->logo = 'storage/app/public/' . $req->input('email');
 
         $image =$req->file('image');
         if($image != null){
             $image_path = '../' . $oldcompany->logo; 
+            echo $oldcompany->logo;
             if(File::exists($image_path)) {
                 File::delete($image_path);
             }
 
-            $input['imagename'] = $req->name . '.' . $image->getClientOriginalExtension();
+            $input['imagename'] = $req->email . '.' . $image->getClientOriginalExtension();
             
             $destinationPath = public_path('../storage/app/public');
             $image->move($destinationPath,$input['imagename']);
@@ -70,7 +69,6 @@ class CompanyController extends Controller
             $company->logo = $company->logo .'.'. $image->getClientOriginalExtension();
         } else {
             if($company->email != $oldcompany->email){
-                //$valore = split ("\.",$oldcompany->logo);
                 $valore = explode('.',$oldcompany->logo);
                 rename('../'.$oldcompany->logo, '../'.$company->logo.'.'.$valore[2]);
                 $company->logo = $company->logo .'.'.$valore[2];
@@ -86,8 +84,8 @@ class CompanyController extends Controller
 
     public function delete(Request $req, $id){
         $company = Company::find($id);
-        Storage::delete('../'.$company->logo);
-        
+        $valore = explode('public',$company->logo);
+        Storage::delete('public/'.$valore[1]);
         DB::table('employes')
                 ->where('company_id',$id)
                 ->update(['company_id' => 0]);
@@ -102,24 +100,24 @@ class CompanyController extends Controller
     public function uploadImage(Request $req){
 
         $this->validate($req, [
-            'name' => 'required',
-            'image' => 'image|dimensions:min_width=100,min_height=100',
+            'new_name' => 'required',
+            'logo_name' => 'image|dimensions:min_width=100,min_height=100',
 
         ]);
 
         $company = new Company;
-        $company->name = $req->input('name');
-        $company->email = $req->input('email');
-        $company->website = $req->input('website');
-        // if( $request->input('company_id') != "") {
-        //     $company = DB::table('companies')->where('id', '=', 10)->get();
-        $logo = 'storage/app/public' . $req->input('name');
-        $company->logo = $logo;
+        $company->name = $req->input('new_name');
+        $company->email = $req->input('new_email');
+        $company->website = $req->input('new_website');
+
+        $image =$req->file('logo_name');
+
+        $company->logo = 'storage/app/public' . $req->input('new_email'). '.' .$image->getClientOriginalExtension();
         
         $company->save();
         
-        $image =$req->file('image');
-        $input['imagename'] = $req->new_name . '.' . $image->getClientOriginalExtension();
+        
+        $input['imagename'] = $req->input('new_email') . '.' . $image->getClientOriginalExtension();
         $destinationPath = public_path('../storage/app/public');
         $image->move($destinationPath,$input['imagename']);
 
